@@ -4,7 +4,7 @@
   "description": "Example of Authentication with Auth0",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server"
   },
   "keywords": [],
   "author": "softeng@port.ac.uk",
