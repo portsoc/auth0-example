@@ -1,7 +1,7 @@
 import express from 'express';
-import OAuth2JWTBearer from 'express-oauth2-jwt-bearer';
 
 import authConfig from './auth-config.js';
+import * as auth0 from './auth0-helpers.js';
 
 const app = express();
 
@@ -10,22 +10,12 @@ app.get('/auth-config', (req, res) => {
   res.json(authConfig);
 });
 
-// create the auth middleware
-const checkJwt = OAuth2JWTBearer.auth({
-  audience: authConfig.audience,
-  issuerBaseURL: `https://${authConfig.domain}`,
-});
+// protect /api from unauthenticated users
+app.use('/api', auth0.checkJwt(authConfig));
 
-// return 'Not authorized' if we don't have a user
-app.use('/api', checkJwt, (err, req, res, next) => {
-  if (err.name === 'UnauthorizedError') {
-    return res.sendStatus(401);
-  } else {
-    next(err);
-  }
-});
+app.get('/api/hello', auth0.getProfile, (req, res) => {
+  console.log(req.user);
 
-app.get('/api/hello', (req, res) => {
   const userId = req.auth.payload.sub;
   res.send(`Hello user ${userId}!`);
 
