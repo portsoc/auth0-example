@@ -18,19 +18,21 @@ async function configureClient() {
   auth0 = await createAuth0Client({
     domain: config.domain,
     client_id: config.clientId,
+    audience: config.audience,
   });
+}
+
+function setupListeners() {
+  document.getElementById('login').addEventListener('click', login);
+  document.getElementById('logout').addEventListener('click', logout);
+  document.getElementById('call').addEventListener('click', callServer);
 }
 
 async function updateAuthUI() {
   const isAuthenticated = await auth0.isAuthenticated();
 
-  const loginBtn = document.getElementById('login');
-  loginBtn.disabled = isAuthenticated;
-  loginBtn.addEventListener('click', login);
-
-  const logoutBtn = document.getElementById('logout');
-  logoutBtn.disabled = !isAuthenticated;
-  logoutBtn.addEventListener('click', logout);
+  document.getElementById('login').disabled = isAuthenticated;
+  document.getElementById('logout').disabled = !isAuthenticated;
 
   if (isAuthenticated) {
     const user = await auth0.getUser();
@@ -74,8 +76,33 @@ async function handleAuth0Redirect() {
   }
 }
 
+async function callServer() {
+  const token = await auth0.getTokenSilently();
+
+  const el = document.getElementById('server-response');
+  el.textContent = 'loading…';
+
+  const fetchOptions = {
+    credentials: 'same-origin',
+    method: 'GET',
+    headers: { Authorization: 'Bearer ' + token },
+  };
+  const response = await fetch('/api/hello', fetchOptions);
+  if (!response.ok) {
+    // handle the error
+    el.textContent = 'Server error:\n' + response.status;
+    return;
+  }
+
+  // handle the response
+  const data = await response.text();
+  console.log('setting text content: ' + data);
+  el.textContent = data;
+}
+
 async function init() {
   await configureClient();
+  await setupListeners();
   await updateAuthUI();
   await handleAuth0Redirect();
 }
