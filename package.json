@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Example of Authentication with Auth0",
   "main": "server.js",
+  "type": "module",
   "scripts": {
     "start": "node server"
   },

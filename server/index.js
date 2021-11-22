@@ -1,7 +1,7 @@
-const express = require('express');
-const OAuth2JWTBearer = require('express-oauth2-jwt-bearer');
+import express from 'express';
+import OAuth2JWTBearer from 'express-oauth2-jwt-bearer';
 
-const authConfig = require('./auth-config.json');
+import authConfig from './auth-config.js';
 
 const app = express();
 
