@@ -61,5 +61,6 @@ Stages 5–6 follow [Auth0.com docs: JavaScript: Calling an API](https://auth0.c
 
 * Through our `server/auth0-helpers.js` library, use the `express-oauth2-jwt-bearer` NPM package to verify the JWT tokens (authenticate users).
 * Report to the user what their ID is and what their profile looks like; this information would normally all be used by the server.
+* Test your API from the command line: `curl http://localhost:8080/api/hello` should say **unauthorized** (in HTTP, that means **not authenticated**; as HTTP uses the word "Forbidden" for not authorized).
 
 **Note: for authorization, your code needs to check what the user is allowed to do, based on their ID or email and what your application knows about them!**
