@@ -5,7 +5,14 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "node server"
+    "start": "echo 'use  `npm run stage-x`  where x is from 1 to 6'",
+    "stage-1": "echo 'stage 1 does not have a server'",
+    "stage-2": "node stages/2/server",
+    "stage-3": "node stages/3/server",
+    "stage-4": "node stages/4/server",
+    "stage-5": "node stages/5/server",
+    "stage-6": "node stages/6/server",
+    "lint": "eslint ."
   },
   "keywords": [],
   "author": "softeng@port.ac.uk",
@@ -24,6 +31,9 @@
     "root": true,
     "env": {
       "browser": true
+    },
+    "globals": {
+      "createAuth0Client": "readonly"
     }
   }
 }
