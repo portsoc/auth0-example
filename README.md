@@ -36,11 +36,11 @@ Stages 2–4 follow [Auth0.com docs: JavaScript: Login](https://auth0.com/docs/q
 * Because auth0 gives our page login data in the query, handle that and remove the query from the URL so user isn't confused (function `handleAuth0Redirect`)
 * Remember that `server/auth-config.js` must contain your Auth0 application's Domain and Client ID.
 
-Now the page can log in and log out! Success!
-
 ## Stage 4: do something in the page on sign-in ([see the diff](https://github.com/portsoc/auth0-example/commit/stage-4))
 
 * To show that we really do know who the user is, put something (e.g. their name and email address) in the page on log in.
+
+Now the page can log in and log out, and knows the user! Success! Next, we need to let the server know who the user is, too.
 
 ## Stage 5: use ID token as an auth header in API requests ([see the diff](https://github.com/portsoc/auth0-example/commit/stage-5))
 
