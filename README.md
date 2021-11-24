@@ -18,7 +18,7 @@ This stage follows [Auth0.com docs: Get Started](https://auth0.com/docs/get-star
   * Save changes
 * Note your application's Domain and Client ID in `server/auth-config.js`
 
-## Stage 2: include the client-side library in your web page
+## Stage 2: include the client-side library in your web page ([see the diff](https://github.com/portsoc/auth0-example/commit/stage-2))
 
 Stages 2–4 follow [Auth0.com docs: JavaScript: Login](https://auth0.com/docs/quickstart/spa/vanillajs).
 
@@ -28,7 +28,7 @@ Stages 2–4 follow [Auth0.com docs: JavaScript: Login](https://auth0.com/docs/q
 * Create a server `server/index.js` that will serve this page
 * Also let the server serve the auth config
 
-## Stage 3: include a sign-in button
+## Stage 3: include a sign-in button ([see the diff](https://github.com/portsoc/auth0-example/commit/stage-3))
 
 * Include two buttons in the page: login and logout
 * Enable only the relevant button when the auth0 library is initialized (login if we're not logged in, logout otherwise)
@@ -38,11 +38,11 @@ Stages 2–4 follow [Auth0.com docs: JavaScript: Login](https://auth0.com/docs/q
 
 Now the page can log in and log out! Success!
 
-## Stage 4: do something in the page on sign-in
+## Stage 4: do something in the page on sign-in ([see the diff](https://github.com/portsoc/auth0-example/commit/stage-4))
 
 * To show that we really do know who the user is, put something (e.g. their name and email address) in the page on log in.
 
-## Stage 5: use ID token as an auth header in API requests
+## Stage 5: use ID token as an auth header in API requests ([see the diff](https://github.com/portsoc/auth0-example/commit/stage-5))
 
 Stages 5–6 follow [Auth0.com docs: JavaScript: Calling an API](https://auth0.com/docs/quickstart/spa/vanillajs/02-calling-an-api).
 
@@ -57,7 +57,7 @@ Stages 5–6 follow [Auth0.com docs: JavaScript: Calling an API](https://auth0.c
 * Add an area in the page where the code can put the response.
 * In the code that calls the API, include an authentication ID token in the request (it becomes a "Bearer" token in the misnamed HTTP Authorization header).
 
-## Stage 6: server verifies token, can perform authorization
+## Stage 6: server verifies token, can perform authorization ([see the diff](https://github.com/portsoc/auth0-example/commit/stage-6))
 
 * Through our `server/auth0-helpers.js` library, use the `express-oauth2-jwt-bearer` NPM package to verify the JWT tokens (authenticate users).
 * Report to the user what their ID is and what their profile looks like; this information would normally all be used by the server.
