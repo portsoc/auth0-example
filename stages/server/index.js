@@ -11,6 +11,11 @@ app.get('/auth-config', (req, res) => {
   res.json(authConfig);
 });
 
+// a simple API route that will greet anyone
+app.get('/api/hello', (req, res) => {
+  res.send(`Hello! The time is ${new Date()}`);
+});
+
 // this will serve the files present in static/ inside this stage
 app.use(express.static(path.join(path.dirname(url.fileURLToPath(import.meta.url)), '../static')));
 
