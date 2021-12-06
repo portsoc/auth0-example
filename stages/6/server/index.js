@@ -1,4 +1,6 @@
 import express from 'express';
+import path from 'path';
+import url from 'url';
 
 import authConfig from './auth-config.js';
 import auth0Helpers from './auth0-helpers.js';
@@ -27,7 +29,7 @@ app.get('/api/hello', async (req, res) => {
 });
 
 // this will serve the files present in static/ inside this stage
-app.use(express.static(new URL('../static', import.meta.url).pathname));
+app.use(express.static(path.join(path.dirname(url.fileURLToPath(import.meta.url)), '../static')));
 
 // start the server
 const PORT = process.env.PORT || 8080;
